@@ -14,6 +14,8 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -21,20 +23,24 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.example.mycityapp.data.DataRepository
+import androidx.lifecycle.viewmodel.compose.viewModel // Импорт для viewModel()
 import com.example.mycityapp.data.Recommendation
-import com.example.mycityapp.ui.theme.CityTheme
+import com.example.mycityapp.ui.viewmodel.RecommendationListViewModel // Импорт вашей ViewModel
 
 @Composable
 fun RecommendationListScreen(
-    categoryName: String,
-    recommendations: List<Recommendation>,
     onRecommendationClick: (Recommendation) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    // ViewModel теперь предоставляется по умолчанию
+    viewModel: RecommendationListViewModel = viewModel()
 ) {
+    // Наблюдаем за LiveData из ViewModel
+    val categoryName by viewModel.categoryName.observeAsState(initial = "")
+    val recommendations by viewModel.recommendations.observeAsState(initial = emptyList())
+
     Column(modifier = modifier.padding(16.dp)) {
         Text(
-            text = categoryName,
+            text = categoryName, // Используем имя категории из ViewModel
             style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier
                 .padding(bottom = 16.dp)
@@ -45,7 +51,7 @@ fun RecommendationListScreen(
             contentPadding = PaddingValues(bottom = 16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            items(recommendations) { recommendation ->
+            items(recommendations) { recommendation -> // Используем данные из ViewModel
                 RecommendationItem(
                     recommendation = recommendation,
                     onRecommendationClick = onRecommendationClick
@@ -92,4 +98,3 @@ fun RecommendationItem(
         }
     }
 }
-

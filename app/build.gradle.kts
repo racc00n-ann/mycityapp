@@ -51,6 +51,8 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.litert.support.api)
+    implementation(libs.androidx.material3.window.size.class1.android)
+    implementation(libs.androidx.runtime.livedata)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -61,4 +63,16 @@ dependencies {
     implementation(libs.material3)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
+
+    implementation(libs.androidx.core.ktx.v1131) // Или актуальная версия
+    implementation(libs.androidx.lifecycle.runtime.ktx.v280) // Или актуальная версия
+    implementation(libs.androidx.activity.compose.v190) // Или актуальная версия
+    implementation(libs.androidx.compose.bom.v20240500) // Или актуальная версия BOM
+    implementation(libs.ui)
+    // ...
+
+    // ViewModel
+    implementation(libs.androidx.lifecycle.viewmodel.ktx) // Или актуальная версия
+    // ViewModel Compose Integration (для использования viewModel() в Composable)
+    implementation(libs.androidx.lifecycle.viewmodel.compose.v280)
 }

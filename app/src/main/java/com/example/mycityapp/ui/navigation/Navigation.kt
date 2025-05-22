@@ -1,65 +1,73 @@
 package com.example.mycityapp.ui.components
 
 import androidx.compose.material3.Text
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
+import androidx.navigation.toRoute
+import androidx.lifecycle.viewmodel.compose.viewModel // Import viewModel helper
 import com.example.mycityapp.R
 import com.example.mycityapp.data.Category
 import com.example.mycityapp.data.DataRepository
 import com.example.mycityapp.ui.screens.CategoryListScreen
 import com.example.mycityapp.ui.screens.RecommendationDetailScreen
 import com.example.mycityapp.ui.screens.RecommendationListScreen
+import com.example.mycityapp.ui.viewmodel.CategoryListViewModel
+import com.example.mycityapp.ui.viewmodel.RecommendationDetailViewModel
+import com.example.mycityapp.ui.viewmodel.RecommendationListViewModel
 
 
 fun NavGraphBuilder.myCityNavGraph(
     navController: NavHostController,
-    categories: List<Category>,
-    selectedCategory: androidx.compose.runtime.MutableState<Category?>,
+    // Эти параметры больше не нужны, так как ViewModel их будет предоставлять
+    // categories: List<Category>,
+    // selectedCategory: androidx.compose.runtime.MutableState<Category?>,
     modifier: Modifier = Modifier
 ) {
     composable(route = MyCityScreen.CategoryList.name) {
+        val categoryListViewModel: CategoryListViewModel = viewModel() // Получаем ViewModel
         CategoryListScreen(
-            categories = categories,
+            // categories = categories, // Теперь получаем из ViewModel
             onCategoryClick = { category ->
-                selectedCategory.value = category
-                navController.navigate("${MyCityScreen.RecommendationList.name}/${category.nameResourceId}")
+                    navController.navigate("${MyCityScreen.RecommendationList.name}/${category.nameResourceId}")
             }
         )
     }
 
     composable(route = "${MyCityScreen.RecommendationList.name}/{categoryId}") { backStackEntry ->
         val categoryId = backStackEntry.arguments?.getString("categoryId")?.toIntOrNull()
-        val categoryName = if (categoryId != null) {
-            stringResource(categoryId)
-        } else {
-            stringResource(R.string.recommendations)
-        }
-        val recommendations = DataRepository().loadRecommendations(categoryName)
 
-        RecommendationListScreen(
-            categoryName = categoryName,
-            recommendations = recommendations,
-            onRecommendationClick = { recommendation ->
-                navController.navigate("${MyCityScreen.RecommendationDetail.name}/${recommendation.nameResourceId}")
-            }
-        )
+        if (categoryId != null) {
+            val recommendationListViewModel: RecommendationListViewModel = viewModel() // Получаем ViewModel
+            recommendationListViewModel.loadRecommendationsForCategory(categoryId) // Загружаем данные
+
+            RecommendationListScreen(
+                // categoryName = categoryName, // Теперь получаем из ViewModel
+                // recommendations = recommendations, // Теперь получаем из ViewModel
+                onRecommendationClick = { recommendation ->
+                    navController.navigate("${MyCityScreen.RecommendationDetail.name}/${recommendation.nameResourceId}")
+                }
+            )
+        } else {
+            Text("Error: Category ID not found") // Обработка ошибки
+        }
     }
 
     composable(route = "${MyCityScreen.RecommendationDetail.name}/{recommendationId}") { backStackEntry ->
         val recommendationId = backStackEntry.arguments?.getString("recommendationId")?.toIntOrNull()
-        val recommendation = if (recommendationId != null) {
-            DataRepository().loadAllRecommendations().find { rec -> rec.nameResourceId == recommendationId }
-        } else {
-            null
-        }
 
-        if (recommendation != null) {
-            RecommendationDetailScreen(recommendation = recommendation)
+        if (recommendationId != null) {
+            val recommendationDetailViewModel: RecommendationDetailViewModel = viewModel() // Получаем ViewModel
+            recommendationDetailViewModel.loadRecommendation(recommendationId) // Загружаем данные
+
+            RecommendationDetailScreen(
+                // recommendation = recommendation // Теперь получаем из ViewModel
+            )
         } else {
-            Text("Recommendation not found")
+            Text("Error: Recommendation ID not found") // Обработка ошибки
         }
     }
 }
