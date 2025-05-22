@@ -1,5 +1,6 @@
 package com.example.mycityapp.ui.navigation
 
+import androidx.compose.foundation.clickable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.*
@@ -14,16 +15,18 @@ import com.example.mycityapp.R
 @Composable
 fun TopAppBar(
     modifier: Modifier = Modifier,
-    onNavigationIconClick: () -> Unit = {}
+    onNavigationIconClick: () -> Unit = {},
+    onTitleClick: () -> Unit = {}
 ) {
     CenterAlignedTopAppBar(
         title = {
             Text(
                 text = stringResource(R.string.app_name),
-                 style = MaterialTheme.typography.titleLarge.copy(
-                        fontWeight = FontWeight.SemiBold,
-                letterSpacing = 0.15.sp
-            )
+                style = MaterialTheme.typography.titleLarge.copy(
+                    fontWeight = FontWeight.SemiBold,
+                    letterSpacing = 0.15.sp
+                ),
+                modifier = Modifier.clickable { onTitleClick() }
             )
         },
         modifier = modifier,

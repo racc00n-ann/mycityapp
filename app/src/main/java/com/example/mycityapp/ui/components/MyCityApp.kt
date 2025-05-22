@@ -55,7 +55,8 @@ fun MyCityApp(
                         scope.launch {
                             drawerState.open()
                         }
-                    }
+                    },onTitleClick = { navController.navigate(MyCityScreen.CategoryList.name) }
+
                 )
             }
         ) { innerPadding ->

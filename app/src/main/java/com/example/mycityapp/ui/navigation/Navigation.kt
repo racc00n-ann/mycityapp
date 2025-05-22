@@ -22,15 +22,11 @@ import com.example.mycityapp.ui.viewmodel.RecommendationListViewModel
 
 fun NavGraphBuilder.myCityNavGraph(
     navController: NavHostController,
-    // Эти параметры больше не нужны, так как ViewModel их будет предоставлять
-    // categories: List<Category>,
-    // selectedCategory: androidx.compose.runtime.MutableState<Category?>,
     modifier: Modifier = Modifier
 ) {
     composable(route = MyCityScreen.CategoryList.name) {
-        val categoryListViewModel: CategoryListViewModel = viewModel() // Получаем ViewModel
+        val categoryListViewModel: CategoryListViewModel = viewModel()
         CategoryListScreen(
-            // categories = categories, // Теперь получаем из ViewModel
             onCategoryClick = { category ->
                     navController.navigate("${MyCityScreen.RecommendationList.name}/${category.nameResourceId}")
             }
@@ -45,14 +41,12 @@ fun NavGraphBuilder.myCityNavGraph(
             recommendationListViewModel.loadRecommendationsForCategory(categoryId) // Загружаем данные
 
             RecommendationListScreen(
-                // categoryName = categoryName, // Теперь получаем из ViewModel
-                // recommendations = recommendations, // Теперь получаем из ViewModel
                 onRecommendationClick = { recommendation ->
                     navController.navigate("${MyCityScreen.RecommendationDetail.name}/${recommendation.nameResourceId}")
                 }
             )
         } else {
-            Text("Error: Category ID not found") // Обработка ошибки
+            Text("Error: Category ID not found")
         }
     }
 
@@ -64,10 +58,9 @@ fun NavGraphBuilder.myCityNavGraph(
             recommendationDetailViewModel.loadRecommendation(recommendationId) // Загружаем данные
 
             RecommendationDetailScreen(
-                // recommendation = recommendation // Теперь получаем из ViewModel
             )
         } else {
-            Text("Error: Recommendation ID not found") // Обработка ошибки
+            Text("Error: Recommendation ID not found")
         }
     }
 }
