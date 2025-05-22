@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">Ижевск</string>
+    <string name="categories">Категории</string>
+    <string name="recommendations">Рекомендации</string>
+
+    <string name="category_cafe">Кафе и рестораны</string>
+    <string name="category_shopping">Торговые центры</string>
+    <string name="category_parks">Парки</string>
+    <string name="category_fitness">Фитнес клубы</string>
+
+    <!-- Кафе и рестораны -->
+    <string name="cafe_name_1">Мясной Гуру</string>
+    <string name="cafe_description_1">Ресторан мясной кухни, где подают лучшие шашлыки по традиционным армянским рецептам. Здесь вы найдете только натуральные фермерские продукты и особую атмосферу кавказского гостеприимства.</string>
+
+    <string name="cafe_name_2">Утки в Городе</string>
+    <string name="cafe_description_2">Уютное кафе с панорамным видом на набережную реки Подборенка. Отличается авторскими блюдами от шеф-повара и оригинальной подачей, что делает каждое посещение особенным.</string>
+
+    <string name="cafe_name_3">Lakrica Coffee</string>
+    <string name="cafe_description_3">Стильная кофейня с профессиональным бариста, где готовят кофе по специальным рецептам. Широкий выбор десертов ручной работы дополняет атмосферу этого уютного места.</string>
+
+    <string name="cafe_name_4">Ralin</string>
+    <string name="cafe_description_4">Кондитерская с изысканными тортами и пирожными, где каждый десерт - маленькое произведение искусства. Возможен заказ праздничных тортов по индивидуальному дизайну.</string>
+
+    <!-- Торговые центры -->
+    <string name="shopping_name_1">Талисман</string>
+    <string name="shopping_description_1">Крупнейший торговый центр города, предлагающий широкий выбор магазинов известных брендов, разнообразные развлечения и фудкорт с кухнями мира.</string>
+
+    <string name="shopping_name_2">Сигма</string>
+    <string name="shopping_description_2">Современный торговый центр с многозальным кинотеатром, просторным фуд-кортом и регулярными мероприятиями для всей семьи.</string>
+
+    <string name="shopping_name_3">Омега</string>
+    <string name="shopping_description_3">Торгово-развлекательный комплекс с уникальными предложениями: катком в зимний период, батутным центром и роллердромом для активного отдыха.</string>
+
+    <string name="shopping_name_4">Матрица</string>
+    <string name="shopping_description_4">Молодежный торговый центр с трендовыми бутиками, концептуальными кафе и особой атмосферой, привлекающей модную публику.</string>
+
+    <!-- Парки -->
+    <string name="park_name_1">Парк имени Горького</string>
+    <string name="park_description_1">Главный городской парк с живописными аллеями, разнообразными аттракционами для всех возрастов и колесом обозрения, с которого открывается панорамный вид на Ижевск.</string>
+
+    <string name="park_name_2">Парк Кирова</string>
+    <string name="park_description_2">Популярное место семейного отдыха с уютными кафе, детскими аттракционами и регулярными культурными мероприятиями под открытым небом.</string>
+
+    <string name="park_name_3">Сквер оружейника Драгунова</string>
+    <string name="park_description_3">Тематический парк с живописным прудом, интерактивными локациями, посвященными оружейному делу, и современной площадкой для воркаута.</string>
+
+    <string name="park_name_4">Фемили парк</string>
+    <string name="park_description_4">Идеальное место для семейного отдыха с возможностью аренды беседок, расположенное рядом с парком Кирова. Специально оборудованные зоны создают комфортные условия для отдыха с детьми.</string>
+
+    <!-- Фитнес клубы -->
+    <string name="fitness_name_1">Flight</string>
+    <string name="fitness_description_1">Премиальный фитнес-клуб с просторным бассейном, инновационными тренажерами последнего поколения и индивидуальным подходом к каждому клиенту.</string>
+
+    <string name="fitness_name_2">Аксион Wellness</string>
+    <string name="fitness_description_2">Многофункциональный спортивный комплекс с профессиональным тренажерным залом, разнообразными групповыми программами и зоной релаксации с сауной.</string>
+
+    <string name="fitness_name_3">Fitбаланс</string>
+    <string name="fitness_description_3">Специализированный клуб для ценителей мягкого фитнеса, предлагающий программы по растяжке, занятия на воздушных полотнах и различные направления йоги.</string>
+
+    <string name="fitness_name_4">Инву</string>
+    <string name="fitness_description_4">Современный спортивный комплекс с большим профессиональным бассейном, идеально подходящим как для тренировок, так и для свободного плавания.</string>
+
+    <string name="navigation_drawer_open">Открыть боковое меню</string>
+    <string name="navigate_back">navigate_back</string>
+</resources>
