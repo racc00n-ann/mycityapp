@@ -8,16 +8,16 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
-import androidx.lifecycle.viewmodel.compose.viewModel // Import viewModel helper
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mycityapp.R
 import com.example.mycityapp.data.Category
 import com.example.mycityapp.data.DataRepository
 import com.example.mycityapp.ui.screens.CategoryListScreen
 import com.example.mycityapp.ui.screens.RecommendationDetailScreen
 import com.example.mycityapp.ui.screens.RecommendationListScreen
-import com.example.mycityapp.ui.viewmodel.CategoryListViewModel
 import com.example.mycityapp.ui.viewmodel.RecommendationDetailViewModel
 import com.example.mycityapp.ui.viewmodel.RecommendationListViewModel
+import com.example.mycityapp.ui.viewmodel.SharedCategoriesViewModel
 
 
 fun NavGraphBuilder.myCityNavGraph(
@@ -25,7 +25,6 @@ fun NavGraphBuilder.myCityNavGraph(
     modifier: Modifier = Modifier
 ) {
     composable(route = MyCityScreen.CategoryList.name) {
-        val categoryListViewModel: CategoryListViewModel = viewModel()
         CategoryListScreen(
             onCategoryClick = { category ->
                     navController.navigate("${MyCityScreen.RecommendationList.name}/${category.nameResourceId}")
@@ -37,8 +36,8 @@ fun NavGraphBuilder.myCityNavGraph(
         val categoryId = backStackEntry.arguments?.getString("categoryId")?.toIntOrNull()
 
         if (categoryId != null) {
-            val recommendationListViewModel: RecommendationListViewModel = viewModel() // Получаем ViewModel
-            recommendationListViewModel.loadRecommendationsForCategory(categoryId) // Загружаем данные
+            val recommendationListViewModel: RecommendationListViewModel = viewModel()
+            recommendationListViewModel.loadRecommendationsForCategory(categoryId)
 
             RecommendationListScreen(
                 onRecommendationClick = { recommendation ->
@@ -54,8 +53,8 @@ fun NavGraphBuilder.myCityNavGraph(
         val recommendationId = backStackEntry.arguments?.getString("recommendationId")?.toIntOrNull()
 
         if (recommendationId != null) {
-            val recommendationDetailViewModel: RecommendationDetailViewModel = viewModel() // Получаем ViewModel
-            recommendationDetailViewModel.loadRecommendation(recommendationId) // Загружаем данные
+            val recommendationDetailViewModel: RecommendationDetailViewModel = viewModel()
+            recommendationDetailViewModel.loadRecommendation(recommendationId)
 
             RecommendationDetailScreen(
             )

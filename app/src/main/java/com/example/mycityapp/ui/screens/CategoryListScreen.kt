@@ -12,25 +12,26 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue // Импорт для observeAsState
-import androidx.compose.runtime.livedata.observeAsState // Импорт для observeAsState
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel // Импорт для viewModel()
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mycityapp.data.Category
-import com.example.mycityapp.ui.viewmodel.CategoryListViewModel // Импорт вашей ViewModel
+import com.example.mycityapp.ui.viewmodel.SharedCategoriesViewModel
 
 @Composable
 fun CategoryListScreen(
     onCategoryClick: (Category) -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: CategoryListViewModel = viewModel()
+    viewModel: SharedCategoriesViewModel = viewModel()
 ) {
-    val categories by viewModel.categories.observeAsState(initial = emptyList())
+    val categories by viewModel.categories.collectAsState(emptyList())
 
     LazyColumn(
         contentPadding = PaddingValues(horizontal = 24.dp, vertical = 16.dp),

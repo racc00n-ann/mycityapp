@@ -60,6 +60,6 @@
     <string name="fitness_name_4">Инву</string>
     <string name="fitness_description_4">Современный спортивный комплекс с большим профессиональным бассейном, идеально подходящим как для тренировок, так и для свободного плавания.</string>
 
-    <string name="navigation_drawer_open">Открыть боковое меню</string>
+    <string name="navigation_drawer_open">drawer_open</string>
     <string name="navigate_back">navigate_back</string>
 </resources>

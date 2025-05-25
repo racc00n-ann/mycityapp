@@ -3,8 +3,6 @@ package com.example.mycityapp.data
 import com.example.mycityapp.R
 
 class DataRepository {
-    // Вспомогательная функция для получения строкового имени категории по её ID
-    // Это очень важно, так как в NavGraph вы передаёте ID, а в loadRecommendations ждёте String
     fun getCategoryNameByResourceId(resourceId: Int): String {
         return when (resourceId) {
             R.string.category_cafe -> "Кафе и рестораны"
@@ -15,9 +13,7 @@ class DataRepository {
         }
     }
 
-    // Вспомогательная функция для получения рекомендации по её ID
     fun getRecommendationByResourceId(resourceId: Int): Recommendation? {
-        // Мы используем loadAllRecommendations, чтобы найти нужную по ID
         return loadAllRecommendations().find { it.nameResourceId == resourceId }
     }
 

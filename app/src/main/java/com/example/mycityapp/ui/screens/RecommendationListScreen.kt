@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
@@ -26,13 +27,10 @@ import com.example.mycityapp.ui.viewmodel.RecommendationDetailViewModel // Им�
 @Composable
 fun RecommendationDetailScreen(
     modifier: Modifier = Modifier,
-    // ViewModel теперь предоставляется по умолчанию
     viewModel: RecommendationDetailViewModel = viewModel()
 ) {
-    // Наблюдаем за LiveData из ViewModel
-    val recommendation by viewModel.recommendation.observeAsState(initial = null)
+    val recommendation by viewModel.recommendation.collectAsState()
 
-    // Проверяем, что рекомендация не null, прежде чем пытаться получить к ней доступ
     if (recommendation != null) {
         Column(
             modifier = modifier
@@ -42,13 +40,13 @@ fun RecommendationDetailScreen(
 
         ) {
             Text(
-                text = stringResource(recommendation!!.nameResourceId), // Используем данные из ViewModel
+                text = stringResource(recommendation!!.nameResourceId),
                 style = MaterialTheme.typography.displaySmall,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
             Image(
-                painter = painterResource(id = recommendation!!.imageResourceId), // Используем данные из ViewModel
-                contentDescription = stringResource(recommendation!!.nameResourceId), // Используем данные из ViewModel
+                painter = painterResource(id = recommendation!!.imageResourceId),
+                contentDescription = stringResource(recommendation!!.nameResourceId),
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(300.dp)
@@ -57,14 +55,13 @@ fun RecommendationDetailScreen(
                 contentScale = ContentScale.Crop
             )
             Text(
-                text = stringResource(recommendation!!.descriptionResourceId), // Используем данные из ViewModel
+                text = stringResource(recommendation!!.descriptionResourceId),
                 style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.fillMaxWidth(),
                 textAlign = TextAlign.Justify
             )
         }
     } else {
-        // Отобразить сообщение об ошибке или индикатор загрузки
         Text("Recommendation details not found or still loading...", modifier = modifier.padding(16.dp))
     }
 }

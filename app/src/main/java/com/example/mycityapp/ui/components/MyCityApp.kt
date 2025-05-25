@@ -14,12 +14,12 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.example.mycityapp.ui.viewmodel.MyCityAppViewModel
+import com.example.mycityapp.ui.viewmodel.SharedCategoriesViewModel
 import kotlinx.coroutines.launch
 
 @Composable
 fun MyCityApp(
-    viewModel: MyCityAppViewModel = viewModel()
+    viewModel: SharedCategoriesViewModel = viewModel()
 ) {
     val navController = rememberNavController()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
@@ -55,8 +55,8 @@ fun MyCityApp(
                         scope.launch {
                             drawerState.open()
                         }
-                    },onTitleClick = { navController.navigate(MyCityScreen.CategoryList.name) }
-
+                    },
+                    onTitleClick = { navController.navigate(MyCityScreen.CategoryList.name) }
                 )
             }
         ) { innerPadding ->
