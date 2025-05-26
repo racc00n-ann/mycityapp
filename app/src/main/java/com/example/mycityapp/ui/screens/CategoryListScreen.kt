@@ -14,7 +14,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -31,7 +30,7 @@ fun CategoryListScreen(
     modifier: Modifier = Modifier,
     viewModel: SharedCategoriesViewModel = viewModel()
 ) {
-    val categories by viewModel.categories.collectAsState(emptyList())
+    val categories by viewModel.categories.collectAsState()
 
     LazyColumn(
         contentPadding = PaddingValues(horizontal = 24.dp, vertical = 16.dp),
